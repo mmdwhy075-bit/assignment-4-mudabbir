@@ -1,0 +1,1339 @@
+/* =========================================================
+   مدبّر - Dashboard
+   الألوان كلها في :root عشان تعدلها بسهولة
+   ========================================================= */
+
+:root {
+  --primary: #4f46e5;
+  --primary-light: #eef2ff;
+  --bg: #f4f6fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+
+  --green: #16a34a;
+  --green-bg: #dcfce7;
+  --red: #dc2626;
+  --red-bg: #fee2e2;
+  --yellow: #d97706;
+  --yellow-bg: #fef3c7;
+  --blue: #2563eb;
+  --blue-bg: #dbeafe;
+
+  --radius: 16px;
+  --shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+}
+
+/* ---------- Reset ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Cairo", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+img {
+  display: block;
+}
+
+/* عشان الأرقام والعلامات (+ -) تتعرض صح جوه النص العربي */
+.ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}
+
+/* =========================================================
+   الصفحة كلها: Grid من عمودين (القائمة + المحتوى)
+   ========================================================= */
+.app {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* =========================================================
+   القائمة الجانبية
+   ========================================================= */
+.sidebar {
+  background: var(--card);
+  border-left: 1px solid var(--border);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--primary);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+}
+
+.logo h1 {
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.logo p {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.nav ul {
+  display: grid;
+  gap: 6px;
+}
+
+.nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: var(--muted);
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.nav a:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.nav .active a {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.quick-actions h3 {
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.qa-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.qa-btn {
+  background: transparent;
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  transition: 0.2s;
+}
+
+.qa-btn i {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+}
+
+.qa-btn:nth-child(1) i {
+  background: var(--blue-bg);
+  color: var(--blue);
+}
+.qa-btn:nth-child(2) i {
+  background: var(--green-bg);
+  color: var(--green);
+}
+.qa-btn:nth-child(3) i {
+  background: #f3e8ff;
+  color: #9333ea;
+}
+.qa-btn:nth-child(4) i {
+  background: var(--red-bg);
+  color: var(--red);
+}
+
+.qa-btn:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* =========================================================
+   المحتوى الرئيسي
+   ========================================================= */
+.main {
+  padding: 16px 22px;
+  display: grid;
+  gap: 24px;
+  align-content: start;
+  min-width: 0;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* ---------- الهيدر ---------- */
+.topbar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+}
+
+.topbar-title h2 {
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+.topbar-title p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.topbar-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.title-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--primary);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+}
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green-bg);
+  color: var(--green);
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status i {
+  font-size: 8px;
+}
+
+.bell {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  font-size: 17px;
+}
+
+.bell-count {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  font-size: 11px;
+  display: grid;
+  place-items: center;
+}
+
+.user {
+  background: var(--bg);
+  padding: 6px 12px;
+  border-radius: 12px;
+}
+
+.user img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user h4 {
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.user p {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ---------- الكارت العام ---------- */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.card-head h3 {
+  font-size: 17px;
+}
+
+.link {
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.link.block {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* ---------- أيقونات دايرية ---------- */
+.round-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+.round-icon.blue {
+  background: var(--blue-bg);
+  color: var(--blue);
+}
+
+.round-icon.green {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.round-icon.red {
+  background: var(--red-bg);
+  color: var(--red);
+}
+
+.round-icon.yellow {
+  background: var(--yellow-bg);
+  color: var(--yellow);
+}
+
+/* =========================================================
+   كروت الإحصائيات (Grid 3 أعمدة)
+   ========================================================= */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  display: grid;
+  gap: 4px;
+}
+
+.stat-card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.stat-card h3 {
+  font-size: 34px;
+  line-height: 1.3;
+}
+
+.change {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.change.up {
+  color: var(--green);
+}
+
+.change.down {
+  color: var(--red);
+}
+
+/* =========================================================
+   شبكة الداشبورد الأساسية (CSS Grid + grid-template-areas)
+   ========================================================= */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-areas:
+    "activities transactions transactions"
+    "bills transactions transactions"
+    "budget       chart        payments"
+    "budget       summary      payments";
+  grid-template-rows: auto auto auto 1fr;
+  gap: 24px;
+}
+
+.transactions {
+  grid-area: transactions;
+}
+.activities {
+  grid-area: activities;
+}
+.bills {
+  grid-area: bills;
+}
+.budget {
+  grid-area: budget;
+}
+.chart {
+  grid-area: chart;
+}
+.summary {
+  grid-area: summary;
+}
+.payments {
+  grid-area: payments;
+}
+
+/* ---------- جدول المعاملات ---------- */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+th {
+  text-align: right;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 0 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+td {
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.tx {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tx img,
+.tx-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.tx-icon {
+  background: var(--primary-light);
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+}
+
+.tx h4 {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.tx p {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.badge {
+  padding: 3px 12px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge.done {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.badge.pending {
+  background: var(--yellow-bg);
+  color: var(--yellow);
+}
+
+.cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 12px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.cat.income {
+  background: var(--green-bg);
+  color: var(--green);
+}
+.cat.food {
+  background: #ffedd5;
+  color: #c2410c;
+}
+.cat.shop {
+  background: var(--blue-bg);
+  color: var(--blue);
+}
+.cat.split {
+  background: #f3e8ff;
+  color: #7e22ce;
+}
+.cat.work {
+  background: #ccfbf1;
+  color: #0f766e;
+}
+.cat.transport {
+  background: var(--yellow-bg);
+  color: var(--yellow);
+}
+.cat.fun {
+  background: #fce7f3;
+  color: #be185d;
+}
+.cat.health {
+  background: var(--red-bg);
+  color: var(--red);
+}
+.cat.edu {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+
+.amount {
+  font-weight: 700;
+}
+
+.plus {
+  color: var(--green);
+}
+
+.minus {
+  color: var(--red);
+}
+
+/* ---------- الأنشطة الحديثة ---------- */
+.activity-list {
+  display: grid;
+  gap: 16px;
+}
+
+.activity-list li {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  padding-left: 12px;
+  border-left: 3px solid var(--blue);
+  border-radius: 6px;
+}
+
+.activity-list li.act-green {
+  border-left-color: var(--green);
+}
+
+.act-tag {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.act-green .act-tag {
+  color: var(--green);
+}
+
+.activity-list h4 {
+  font-size: 14px;
+}
+
+.activity-list p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.activity-list small {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ---------- الفواتير الشهرية ---------- */
+.bills-total {
+  background: var(--primary-light);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.bills-total h2 {
+  color: var(--primary);
+  font-size: 26px;
+  line-height: 1.3;
+}
+
+.bills-total p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.bill-list,
+.summary-list {
+  display: grid;
+  gap: 14px;
+}
+
+.bill-list li,
+.summary-list li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.bill-list {
+  grid-template-columns: 1fr 1fr;
+}
+
+.bill-list li {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+  gap: 6px;
+  background: var(--bg);
+  padding: 14px 12px;
+  border-radius: 12px;
+}
+
+.bill-info h4,
+.summary-info h4 {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.bill-info p,
+.summary-info p {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.bill-list strong,
+.summary-list strong {
+  font-size: 14px;
+}
+
+.summary-list li {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.summary-list .round-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.round-icon.purple {
+  background: #f3e8ff;
+  color: #9333ea;
+}
+
+/* ---------- الميزانية ---------- */
+.budget-total {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.budget-numbers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.budget-numbers p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.budget-numbers h3 {
+  font-size: 19px;
+}
+
+.budget-numbers > div:last-child {
+  text-align: left;
+}
+
+.budget-numbers .green-text {
+  color: var(--green);
+}
+
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.progress {
+  height: 8px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  background: var(--primary);
+  border-radius: 99px;
+}
+
+.progress span.orange {
+  background: #f97316;
+}
+.progress span.danger {
+  background: var(--red);
+}
+.progress span.pink {
+  background: #ec4899;
+}
+.progress span.green {
+  background: var(--green);
+}
+
+.budget-list {
+  display: grid;
+  gap: 12px;
+}
+
+.budget-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.budget-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.b-info {
+  flex: 1;
+}
+
+.b-info h4 {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.b-info p {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.b-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.b-icon.orange {
+  background: #ffedd5;
+  color: #ea580c;
+}
+.b-icon.red {
+  background: var(--red-bg);
+  color: var(--red);
+}
+.b-icon.pink {
+  background: #fce7f3;
+  color: #db2777;
+}
+.b-icon.green {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.budget-left {
+  text-align: left;
+}
+
+.budget-left strong {
+  display: block;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.pill.green {
+  background: var(--green-bg);
+  color: var(--green);
+}
+.pill.red {
+  background: var(--red-bg);
+  color: var(--red);
+}
+.pill.yellow {
+  background: var(--yellow-bg);
+  color: var(--yellow);
+}
+
+/* ---------- الشارت (أعمدة بـ Grid) ---------- */
+/* ---------- الشارت ---------- */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  margin-left: 4px;
+}
+
+.dot.income,
+.bar.income {
+  background: var(--green);
+}
+
+.dot.expense,
+.bar.expense {
+  background: var(--red);
+}
+
+.bars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.week {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.week small {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.bars {
+  height: 150px;
+  display: grid;
+  grid-template-columns: repeat(2, 22px);
+  align-items: end;
+  gap: 4px;
+}
+
+.bar {
+  display: block;
+  border-radius: 4px 4px 0 0;
+}
+
+/* ---------- ملخص الحساب ---------- */
+.summary-list strong.minus {
+  color: var(--red);
+}
+
+/* =========================================================
+   وسائل الدفع + كروت الـ Flip (البونص)
+   ========================================================= */
+.payments {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+}
+
+.payments .card-head {
+  margin-bottom: 0;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* الكارت الخارجي: بيدي إحساس الـ 3D */
+.flip-card {
+  height: 200px;
+  perspective: 1000px;
+  cursor: pointer;
+  outline: none;
+}
+
+/* الجزء اللي بيلف فعلاً */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* القلب عند الـ hover أو الضغط (focus) */
+.flip-card:hover .flip-card-inner,
+.flip-card:focus .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* وش وضهر الكارت */
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 18px;
+  color: #fff;
+  background: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+/* ألوان الكروت */
+.visa-blue {
+  --card-bg: linear-gradient(135deg, #3b4bb8, #5f5fd1);
+}
+
+.mc-red {
+  --card-bg: linear-gradient(135deg, #b91c1c, #dc2626);
+}
+
+.paypal {
+  --card-bg: linear-gradient(135deg, #1e3a8a, #2563eb);
+}
+
+/* محتوى وش الكارت */
+.card-top {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-chip {
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.card-logo {
+  font-size: 40px;
+}
+
+.main-tag {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 2px 12px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.card-number {
+  font-size: 21px;
+  letter-spacing: 2px;
+  text-align: right;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.card-bottom small {
+  display: block;
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.card-bottom p {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.paypal-info p {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.paypal-info small {
+  display: block;
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+/* محتوى ضهر الكارت */
+.magnetic-strip {
+  height: 38px;
+  background: #111827;
+  margin: 0 -18px;
+  margin-top: 4px;
+}
+
+.signature {
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+/* شاشات متوسطة: الداشبورد على عمودين */
+@media (max-width: 1200px) {
+  .dashboard {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "transactions transactions"
+      "activities   bills"
+      "budget       payments"
+      "chart        summary";
+  }
+}
+
+/* تابلت: القائمة فوق والمحتوى تحتها */
+@media (max-width: 900px) {
+  .app {
+    grid-template-columns: 1fr;
+    height: auto;
+    overflow: visible;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    border-left: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav ul {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .qa-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .main {
+    padding: 20px 16px;
+    height: auto;
+    overflow: visible;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* موبايل: كل حاجة تحت بعض */
+@media (max-width: 700px) {
+  .dashboard {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "transactions"
+      "activities"
+      "bills"
+      "budget"
+      "chart"
+      "summary"
+      "payments";
+  }
+
+  .qa-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    grid-template-columns: 1fr;
+  }
+
+  .status {
+    display: none;
+  }
+}
+
+.paypal-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  direction: rtl;
+}
+
+.paypal-status {
+  text-align: left;
+}
+
+.signature {
+  background: transparent;
+  color: #fff;
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.signature-number {
+  background: #fff;
+  color: #111827;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: left;
+  direction: ltr;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.budget-item {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.budget-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+}
+
+.visa-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.visa-brand .main-tag {
+  margin-bottom: -5px;
+  position: relative;
+  z-index: 2;
+}
+
+.visa-brand .card-logo {
+  position: relative;
+  z-index: 1;
+}
+
+.flip-card:has(.paypal) .card-back {
+  background: #fff;
+  color: #111827;
+}
+
+.back-code {
+  background: #fff;
+  color: #111827;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: left;
+  direction: ltr;
+  width: 65px;
+  align-self: flex-start;
+  margin: auto auto 0 0;
+}
+
+.back-code small {
+  display: block;
+  color: #6b7280;
+  font-size: 9px;
+}
+
+.back-code p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.flip-card.visa-blue .card-back .card-top {
+  display: none;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card-front {
+  transform: rotateY(0deg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.change {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.change.up {
+  color: #16a34a;
+}
+
+.change.down {
+  color: #dc2626;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-info {
+  text-align: right;
+}
+
+.sidebar .nav {
+  flex: 1;
+}
+
+.sidebar .nav ul {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 0;
+}
+
+@media (max-width: 900px) {
+  .sidebar .nav {
+    flex: initial;
+  }
+
+  .sidebar .nav ul {
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 6px;
+  }
+}
